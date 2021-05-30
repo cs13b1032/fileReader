@@ -11,12 +11,20 @@ import (
 	utils "theReader/services/utils"
 )
 
+/**
+* Takes the path of the file as input, reads the file and then creates files for valid output and invlaid output
+* @Params {string} path
+*/
+
 func ProcessTxtFile(path string) {
 
   	var filenameWithoutExt = helpers.GetFileNameWithoutExt(path, constants.Txt)
-
+	
+	  // for unique emailIds and employeeIds 
 	emailMap := make(map[string]int)
 	employeeIdMap :=  make(map[string]int)
+
+	//opening a file to read with given path
 	txtReadFile, err := os.Open(path)
 
 	if err != nil {
@@ -29,6 +37,7 @@ func ProcessTxtFile(path string) {
 
 	scanner.Split(bufio.ScanLines)
 
+	//creating validOutput and invalidOutput files to write the data
 	txtWriteValidOutputfile, writevalidOutputErr := os.Create(filenameWithoutExt+"_validOutput.txt")
 	txtWriteinValidOutputfile, writeinValidOutputErr := os.Create(filenameWithoutExt+"_inValidOutput.txt")
 
@@ -52,13 +61,18 @@ func ProcessTxtFile(path string) {
 		log.Fatalf("Error in Reading Header")
 	}
 	header := strings.Split(scanner.Text(), ",")
+
+	//processing the header
 	headerNameIndexes, headerIndexes := utils.ProcessHeader(header)
 
 	for scanner.Scan() {
 		text := scanner.Text()
 		record := strings.Split(text, ",")
+
+		// validating the record
 		returnValues, validEntry := validators.Validator(record, headerNameIndexes, headerIndexes)
 
+		// checking if the record is valid and no repeated emailId and EmployeeId
 		if validEntry{
 			_, okEmail := emailMap[returnValues[1]]
 			_, okEmpId := employeeIdMap[returnValues[2]]

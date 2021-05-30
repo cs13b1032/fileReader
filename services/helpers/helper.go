@@ -6,6 +6,11 @@ import (
 	constants "theReader/services/constants"
 )
 
+/**
+* Takes folder where the input files to be processed as input returns the total path to be processed
+* @Params {string} inputFileFolder
+* @Returns {string} inputFileFolderPath
+**/
 func GetinputFileFolderPath(inputFileFolder string)(string){
 
 	// Get current directory Path
@@ -20,6 +25,13 @@ func GetinputFileFolderPath(inputFileFolder string)(string){
 	return inputFileFolderPath
 }
 
+/**
+* Takes fileName as the input and returns it's extension, processorName and if it can be processed
+* @Params {string} fileName
+* @Returns {string} fileExtension
+* @Returns {string} processorName
+* @Returns {bool} isfileProcessable
+**/
 func CheckFileFormatSupported(fileName string)(string, string, bool){
 
 	fileExtension := filepath.Ext(fileName)
@@ -27,6 +39,13 @@ func CheckFileFormatSupported(fileName string)(string, string, bool){
 
 	return fileExtension, val, ok
 }
+
+/**
+* Takes path and extension of the file as input and returns the fileName without extension
+* @Params {string} path
+* @Params {string} extenstion
+* @Returns {string} fileNameWihoutExtension
+**/
 
 func GetFileNameWithoutExt(path string, extenstion string)(string){
 

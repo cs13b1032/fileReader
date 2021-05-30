@@ -1,11 +1,16 @@
 package utils
 
 import (
-	// "log"
 	"strings"
 	constants "theReader/services/constants"
 )
 
+/**
+* Takes a set of KeyWords and value, and returns if it is valid header
+* @Params {[]string} keyWords
+* @Params {string} headerKey
+* @Returns {bool} isValidHeader
+**/
 func CheckIfRespectiveHeader(keyWords []string,value string)(bool){
 
 	for i:=0;i<len(keyWords);i++{
@@ -15,6 +20,13 @@ func CheckIfRespectiveHeader(keyWords []string,value string)(bool){
 	}
 	return false
 }
+
+/**
+* Takes header record and process the header returns the respective indexes
+* @Params {[]string} header
+* @Returns {[]int} nameIndexes 
+* @Returns {map[string]int} indexes
+**/
 
 func ProcessHeader(header []string)([]int, map[string]int){
 	

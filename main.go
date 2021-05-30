@@ -10,7 +10,6 @@ import (
 )
 
 // All the files that are to be processed currently reside in the folder input_file_folder in the current directory
-
 func main() {
 
 	log.Println("Getting folder path for input files")
