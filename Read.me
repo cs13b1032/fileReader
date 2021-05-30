@@ -1,0 +1,16 @@
+Steps to build the project
+
+1. Need golang 1.16+.
+2. Install golang from https://golang.org/doc/install.
+3. Change the directory to the project folder - fileReader.
+4. Install the required Modules required for the Project.
+5. Some required modules installation commands : go get github.com/360EntSecGroup-Skylar/excelize
+6. Build the module 
+    Build command: go build main.go
+    Run command : ./main
+        All the files in the input_file_folder with valid extensions will be filtered for the given conditions
+        For every extension file, two files will be created one with valid Details and another with inValid Details
+7. Run the tests
+    1. Change to directory unit_tests
+    2. Run the command : go test
+        All the unit tests will run and gives the output

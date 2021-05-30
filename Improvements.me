@@ -1,0 +1,18 @@
+1. We can use Cache to store the Maps of EmployeeId and Employee Email Id rather than storing in the inMemory, and check if we get duplicate emailIds and EmployeeIds
+2. As of now there is no way of finding the name and employeeId fields by any means.
+    Email and Employee EmployeeSalary can be found by Regex. Even there are some limitaions to find the employeeSalary, If multiple columns have the similar data, Issues may arise.
+    We can improve the current project for finding the column Ids of the mail, employee Name, employee Id and employee salary by the following method
+
+    Follow the current flow for finding the columnindexes of the mail, employee Name, employee Id and employee salary
+    If not found, take the first 10 rows of the data from the files, 
+        find the employee Email similar to as of now for all the ten rows  (Currently there are multiple domains in the mails, what we can do is find the most ouccring 
+        domain as the email domain, if email domain is also needed)
+        find the employee Salary similar to as of now for all the ten rows
+        find the employee Name by:
+            Have a set of the names (similar to how e-commerce websites does the filtaration of spammed comments and ranking the comments based on a set of keywords that they
+            have for filtaration) stored in trie data structure, this is a very good way to find if it is name or a random string.
+        find the employee id by checking if there is a sequence in other remaining columns, still this might not be sufficient. there might be random unique non-sequential Ids can be present
+
+    or Machine learning to find out the columns Ids for  mail, employee Name, employee Id and employee salary
+3. More Unit Tests cases
+    1. Currently we didn't use mocks as there will be errors while writing to the files. 
